@@ -1,0 +1,27 @@
+version: "3"
+
+service:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_USER: alexander
+      MYSQL_PASSWORD: SupermAn123
+      MYSQL_DATABASE: wp_test
+    volumes:
+      - mysql: /var/lib/mysql
+      
+  wordpress_assesment:
+     image: docker pull wordpress:php8.1
+     ports:
+      - 80
+     volumes:
+      - wordpress: /var/www/html
+     environment:
+      - WORDPRESS_DB_HOST: mysql
+      - WORDPRESS_DB_USER: alexander
+      - WORDPRESS_DB_PASSWORD: SupermAn123
+      - WORDPRESS_DB_NAME: wp_test
+      
+volumes:
+  mysql:
+  wordpress:
