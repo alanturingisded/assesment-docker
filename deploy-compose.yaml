@@ -11,7 +11,7 @@ service:
       - mysql: /var/lib/mysql
       
   wordpress_assesment:
-     image: docker pull wordpress:php8.1
+     image: wordpress:php8.1
      ports:
       - 80
      volumes:
