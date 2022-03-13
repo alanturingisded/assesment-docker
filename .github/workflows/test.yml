@@ -16,7 +16,6 @@ jobs:
 
   deploy_SIT_DEVELOP:
     name: deploy to SIT branch DEVELOP
-    needs: ['initialize']
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +34,6 @@ jobs:
 
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
-    needs: ['initialize']
     runs-on: ubuntu-latest
     environment:
       name: prod
