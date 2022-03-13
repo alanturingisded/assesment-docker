@@ -1,0 +1,47 @@
+# DEVELOP NEW CONCEPT
+
+on:
+  push:
+    branches:
+    - develop
+    - master
+
+jobs:
+
+  deploy_SIT_DEVELOP:
+    name: deploy to SIT branch DEVELOP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout branch #tambahin sendiri
+        run: |
+          echo "complete checkout"
+
+      - name: Configure AWS credentials
+        run: |
+          echo "complete configure aws"
+
+      - name: Login to Amazon ECR
+        run: |
+          echo "complete ECR"
+
+
+  deploy_PROD_MASTER:
+    name: deploy to PROD branch MASTER
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+
+    steps:
+      - name: checkout branch #tambahin sendiri
+        run: |
+          echo "complete checkout"
+
+      - name: Configure AWS credentials
+        run: |
+          echo "complete configure aws"
+
+      - name: Login to Amazon ECR
+        run: |
+          echo "complete ECR"
+ 
