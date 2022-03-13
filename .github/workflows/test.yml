@@ -7,13 +7,6 @@ on:
     - master
 
 jobs:
-
-  initialize:
-    runs-on: ubuntu-latest
-    run: |
-      echo "LETS GO"
-
-
   deploy_SIT_DEVELOP:
     name: deploy to SIT branch DEVELOP
     runs-on: ubuntu-latest
@@ -46,7 +39,6 @@ jobs:
       - name: Configure AWS credentials
         run: |
           echo "complete configure aws"
-
 
       - name: Login to Amazon ECR
         run: |
