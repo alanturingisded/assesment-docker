@@ -15,6 +15,10 @@ on:
         description: deploy manually to staging
         required: true
         default: "staging"
+      # sit:
+      #   description: deploy manually to SIT
+      #   required: true
+      #   default: "sit"
       
 
 
@@ -22,6 +26,7 @@ jobs:
 
   deploy_SIT_DEVELOP:
     name: deploy to SIT branch DEVELOP
+    # if: ${{ github.event.inputs.sit == 'sit' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +45,7 @@ jobs:
 
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
-    if: ${{ github.event.inputs.prod == 'true' }}
+    if: ${{ github.event.inputs.prod == 'prod' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -58,7 +63,7 @@ jobs:
 
   deploy_STAGING_DEVELOP:
     name: deploy to PROD branch MASTER
-    if: ${{ github.event.inputs.staging == 'true' }}
+    if: ${{ github.event.inputs.staging == 'staging' }}
     needs: ['deploy_SIT_DEVELOP']
     runs-on: ubuntu-latest
 
