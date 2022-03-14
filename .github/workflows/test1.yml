@@ -4,12 +4,13 @@ on:
   push:
     branches:
     - master
+    - develop
   workflow_dispatch:
     inputs:
       job:
         description: 'Deploy to prod manually'
         required: true
-        default: 'deploy_PROD_MASTER'
+        default: 'deploy-prod'
 
 
 jobs:
@@ -34,6 +35,8 @@ jobs:
 
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
+    if: ${{ github.event.inputs.job == 'deploy-prod'}}
+    needs: ['deploy_SIT_DEVELOP']
     runs-on: ubuntu-latest
 
     steps:
