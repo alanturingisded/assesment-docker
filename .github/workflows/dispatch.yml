@@ -7,25 +7,13 @@ on:
     - develop
   workflow_dispatch:
     inputs:
-      deploy:
-        description: deploy manual
+      job:
+        description: deploy staging manual
         required: true
-        options:
-        - prod
-        - staging
-
-      # staging:
-        # description: deploy manually to staging
-        # required: true
-        # default: "staging"
-      # sit:
-      #   description: deploy manually to SIT
-      #   required: true
-      #   default: "sit"
-      
-
+        default: "deploy_STAGING_DEVELOP"
 
 jobs:
+
 
   deploy_SIT_DEVELOP:
     name: deploy to SIT branch DEVELOP
@@ -48,7 +36,7 @@ jobs:
 
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
-    if: ${{ github.event.inputs.deploy == 'prod' }}
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
 
     steps:
@@ -66,7 +54,7 @@ jobs:
 
   deploy_STAGING_DEVELOP:
     name: deploy to PROD branch MASTER
-    if: ${{ github.event.inputs.deploy == 'staging' }}
+    if: ${{ github.event.inputs.job == 'deploy_STAGING_DEVELOP'}}
     needs: ['deploy_SIT_DEVELOP']
     runs-on: ubuntu-latest
 
