@@ -55,7 +55,7 @@ jobs:
   deploy_STAGING_DEVELOP:
     name: deploy to PROD branch MASTER
     needs: ['deploy_SIT_DEVELOP']
-    if: ${{ github.event.inputs.job == 'deploy_STAGING_DEVELOP'}}
+    if: ${{ github.event.inputs.job == 'deploy_STAGING_DEVELOP'}} && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
