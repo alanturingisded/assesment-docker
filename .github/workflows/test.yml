@@ -3,9 +3,14 @@
 on:
   push:
     branches:
-    - develop
     - master
-    - main
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Deploy to staging manually'
+        required: true
+        default: 'deploy_PROD_MASTER'
+
 
 jobs:
 
@@ -30,8 +35,6 @@ jobs:
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
     runs-on: ubuntu-latest
-    environment:
-      name: prod
 
     steps:
       - name: checkout branch #tambahin sendiri
