@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       job:
-        description: 'Deploy to prod manually'
+        description: 'Deploy to staging manually'
         required: true
         default: 'deploy_STAGING_DEVELOP'
 
