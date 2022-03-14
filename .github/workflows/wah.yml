@@ -17,7 +17,7 @@ jobs:
 
   deploy_SIT_DEVELOP:
     name: deploy to SIT branch DEVELOP
-    if: github.ref == 'refs/heads/develop'
+    if: ${{ github.event.inputs.job == 'deploy_SIT_DEVELOP'}}
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +36,7 @@ jobs:
 
   deploy_PROD_MASTER:
     name: deploy to PROD branch MASTER
-    if: github.ref == 'refs/heads/master'
+    if: ${{ github.event.inputs.job == 'deploy_PROD_MASTER'}}
     runs-on: ubuntu-latest
 
     steps:
@@ -54,8 +54,8 @@ jobs:
 
   deploy_STAGING_DEVELOP:
     name: deploy to PROD branch MASTER
+    if: ${{ github.event.inputs.job == 'deploy_STAGING_DEVELOP'}}
     needs: ['deploy_SIT_DEVELOP']
-    if: ${{ github.event.inputs.job == 'deploy_STAGING_DEVELOP'}} && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
 
     steps:
